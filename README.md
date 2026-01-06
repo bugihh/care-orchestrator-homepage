@@ -1,2 +1,932 @@
 # care-orchestrator-homepage
 Homepage für Care-Orchestrator (MVP)
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CleanCare Hamburg – Reinigung, Hausservice & Alltagshilfe</title>
+  <meta name="description" content="Professionelle Reinigung, Hausservice & Alltagshilfe in Hamburg. Zuverlässig, freundlich, versichert. Jetzt unverbindlich anfragen.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-deep-navy: #1C2E4A;
+      --color-soft-turquoise: #5BC6C9;
+      --color-warm-coral: #FF8A65;
+      --color-off-white: #F8F9FA;
+      --color-text: #111827;
+      --color-muted: #6b7280;
+      --max-width: 1120px;
+      --radius-card: 18px;
+      --radius-button: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--color-deep-navy);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(28, 46, 74, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #ffffff;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 14px;
+      background: var(--color-soft-turquoise);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-deep-navy);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .logo-text {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #ffffff;
+      font-size: 0.85rem;
+    }
+
+    .btn,
+    .btn-secondary {
+      border-radius: var(--radius-button);
+      padding: 0.55rem 1.4rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.12s ease-out, border-color 0.12s ease-out, color 0.12s ease-out;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn {
+      background: var(--color-soft-turquoise);
+      color: var(--color-deep-navy);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      padding: 32px 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 64px 1.25rem;
+      }
+    }
+
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      background: radial-gradient(circle at top left, #293b5c 0, #1C2E4A 45%, #141f35 100%);
+      color: #ffffff;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+      }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(248, 249, 250, 0.72);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      font-size: clamp(2.1rem, 3.5vw + 1rem, 3.5rem);
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      max-width: 480px;
+      color: rgba(248, 249, 250, 0.82);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-bottom: 1.25rem;
+      align-items: center;
+    }
+
+    .hero-meta {
+      font-size: 0.85rem;
+      color: rgba(248,249,250,0.8);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .hero-pill {
+      padding: 0.25rem 0.9rem;
+      border-radius: 20px;
+      background: rgba(91, 198, 201, 0.12);
+      border: 1px solid rgba(91, 198, 201, 0.7);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-illustration {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-illustration-inner {
+      width: min(480px, 100%);
+      aspect-ratio: 4 / 3;
+      background: var(--color-off-white);
+      border-radius: 32px;
+      padding: 1.5rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Abstrakte, playful-clean Figur */
+    .shape-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.7;
+      background: radial-gradient(circle at 10% 10%, rgba(91,198,201,0.25), transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(255,138,101,0.25), transparent 52%);
+    }
+
+    .shape-main {
+      position: absolute;
+      inset: 18%;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #ffffff, #e9edf1);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .shape-figure {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 999px;
+      background: var(--color-soft-turquoise);
+      box-shadow: 0 12px 30px rgba(5, 150, 160, 0.6);
+    }
+
+    .bubble.b1 {
+      width: 60px;
+      height: 60px;
+      top: 12%;
+      left: 10%;
+    }
+
+    .bubble.b2 {
+      width: 42px;
+      height: 42px;
+      bottom: 18%;
+      right: 8%;
+      background: var(--color-warm-coral);
+      box-shadow: 0 12px 30px rgba(255, 138, 101, 0.6);
+    }
+
+    .tile {
+      position: absolute;
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+    }
+
+    .tile.t1 {
+      width: 48%;
+      height: 32%;
+      top: 16%;
+      right: 8%;
+    }
+
+    .tile.t2 {
+      width: 40%;
+      height: 28%;
+      bottom: 18%;
+      left: 12%;
+    }
+
+    .tile-bar {
+      position: absolute;
+      border-radius: 999px;
+      height: 6px;
+      background: var(--color-soft-turquoise);
+    }
+
+    .tile-bar.tb1 {
+      width: 60%;
+      top: 24%;
+      left: 20%;
+    }
+
+    .tile-bar.tb2 {
+      width: 40%;
+      top: 40%;
+      left: 20%;
+      background: var(--color-warm-coral);
+    }
+
+    .hero-illustration-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      font-size: 0.75rem;
+      color: #4b5563;
+      text-align: center;
+    }
+
+    /* Section headings */
+    .section-heading {
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: rgba(248, 249, 250, 0.72);
+      max-width: 640px;
+    }
+
+    /* Light sections */
+    .section-light {
+      background: var(--color-off-white);
+      color: var(--color-text);
+    }
+
+    .section-light .section-heading {
+      color: var(--color-text);
+    }
+
+    .section-light .section-subtitle {
+      color: var(--color-muted);
+    }
+
+    /* Service cards */
+    .service-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 900px) {
+      .service-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: var(--radius-card);
+      padding: 1.4rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(91, 198, 201, 0.1);
+      color: #0f172a;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin-top: 0.4rem;
+    }
+
+    .card ul li + li {
+      margin-top: 0.25rem;
+    }
+
+    /* Why us */
+    .why-grid {
+      display: grid;
+      gap: 1.75rem;
+    }
+
+    @media (min-width: 900px) {
+      .why-grid {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      }
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .pill {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(248, 249, 250, 0.18);
+      border: 1px solid rgba(248, 249, 250, 0.4);
+      font-size: 0.78rem;
+      color: #e5e7eb;
+    }
+
+    .card-why {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--radius-card);
+      padding: 1.4rem;
+      border: 1px solid rgba(248, 249, 250, 0.08);
+      color: rgba(248, 249, 250, 0.9);
+      font-size: 0.9rem;
+    }
+
+    /* Pricing */
+    .pricing-note {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .price-label {
+      color: var(--color-muted);
+    }
+
+    .price-value {
+      font-weight: 600;
+      color: var(--color-deep-navy);
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 900px) {
+      .testimonial-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .testimonial {
+      background: #ffffff;
+      border-radius: var(--radius-card);
+      padding: 1rem;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      font-size: 0.88rem;
+      color: var(--color-muted);
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 0.6rem;
+      color: var(--color-text);
+      font-size: 0.82rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+      }
+    }
+
+    form {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      gap: 0.3rem;
+    }
+
+    input,
+    select,
+    textarea {
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 0.55rem 0.7rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      background: #ffffff;
+      transition: border-color 0.12s ease-out, box-shadow 0.12s ease-out;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--color-soft-turquoise);
+      box-shadow: 0 0 0 1px rgba(91, 198, 201, 0.5);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-helper {
+      font-size: 0.75rem;
+      color: var(--color-muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(248, 249, 250, 0.1);
+      padding: 1.5rem 1.25rem;
+      background: #151f33;
+      color: rgba(248, 249, 250, 0.7);
+      font-size: 0.8rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-color: rgba(248, 249, 250, 0.25);
+    }
+
+    .footer-links a:hover {
+      text-decoration-color: var(--color-soft-turquoise);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="nav">
+        <div class="logo-wrap">
+          <div class="logo-mark">CC</div>
+          <div class="logo-text">CleanCare Hamburg</div>
+        </div>
+        <div class="nav-right">
+          <span>+49 40 12345678</span>
+          <a href="#kontakt" class="btn-secondary">Anfrage</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section hero">
+        <div class="section-inner hero-grid">
+          <div>
+            <div class="hero-eyebrow">Sauberkeit · Hausservice · Entlastung</div>
+            <h1 class="hero-title">Reinigung, Hausservice & Alltagshilfe in Hamburg</h1>
+            <p class="hero-subtitle">
+              Wir unterstützen Haushalte, Senioren, Familien und kleine Unternehmen in Hamburg
+              mit zuverlässiger Reinigung, praktischem Hausservice und alltagsnaher Hilfe.
+              Transparent, freundlich und versichert.
+            </p>
+            <div class="hero-cta-row">
+              <a href="#kontakt" class="btn">Jetzt unverbindlich anfragen</a>
+              <a href="tel:+494012345678" class="btn-secondary">Direkt anrufen</a>
+            </div>
+            <div class="hero-meta">
+              <span class="hero-pill">Antwort innerhalb von 24 Stunden</span>
+              <span>Flexible Termine · Gewerblich registriert & versichert</span>
+            </div>
+          </div>
+          <div class="hero-illustration">
+            <div class="hero-illustration-inner">
+              <div class="shape-bg"></div>
+              <div class="shape-main">
+                <div class="shape-figure">
+                  <div class="bubble b1"></div>
+                  <div class="bubble b2"></div>
+                  <div class="tile t1">
+                    <div class="tile-bar tb1"></div>
+                    <div class="tile-bar tb2"></div>
+                  </div>
+                  <div class="tile t2"></div>
+                </div>
+              </div>
+              <div class="hero-illustration-label">
+                Playfully clean: abstrakte Figur für Ordnung, Struktur & Unterstützung im Alltag.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEISTUNGEN -->
+      <section class="section section-light" id="leistungen">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 class="section-title">Unsere Leistungen</h2>
+            <p class="section-subtitle">
+              Drei Bereiche – ein Ziel: Ihr Alltag wird leichter. Wählen Sie die Unterstützung, die zu Ihnen passt.
+            </p>
+          </div>
+
+          <div class="service-grid">
+            <article class="card">
+              <div class="badge">Reinigung</div>
+              <h3>Haushalt & Büro</h3>
+              <ul>
+                <li>Regelmäßige Haushaltsreinigung</li>
+                <li>Grund- & Fensterreinigung</li>
+                <li>Einzugs- & Auszugsreinigung</li>
+                <li>Büro- & Praxisreinigung</li>
+                <li>Airbnb- & Ferienwohnung-Service</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="badge">Hausservice</div>
+              <h3>Rund ums Zuhause</h3>
+              <ul>
+                <li>Möbelmontage & Aufbau</li>
+                <li>Lampen, Gardinen & Regale montieren</li>
+                <li>Entrümpelung & Kleintransporte</li>
+                <li>Gartenpflege & Terrassenreinigung</li>
+                <li>Unterstützung beim Umzug</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="badge">Alltagshilfe</div>
+              <h3>Für Senioren & Familien</h3>
+              <ul>
+                <li>Einkäufe & Besorgungen</li>
+                <li>Begleitung zu Arztterminen & Terminen</li>
+                <li>Haushaltsunterstützung im Alltag</li>
+                <li>Betreuung (nicht pflegerisch)</li>
+                <li>Haustier- & Pflanzenbetreuung</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- WARUM WIR -->
+      <section class="section" id="warum-wir">
+        <div class="section-inner why-grid">
+          <div>
+            <div class="section-heading">
+              <h2 class="section-title">Warum CleanCare Hamburg?</h2>
+              <p class="section-subtitle">
+                Wir kombinieren professionelle Abläufe mit einem sehr persönlichen Service – für Menschen, die Wert auf Verlässlichkeit legen.
+              </p>
+            </div>
+            <p style="font-size:0.92rem; color:rgba(248,249,250,0.8); margin-bottom:0.75rem;">
+              Wir wissen, dass wir in sensible Bereiche Ihres Lebens und Ihrer Räume kommen.
+              Deswegen sind Verlässlichkeit, Diskretion und Sorgfalt für uns selbstverständlich.
+              Wir arbeiten strukturiert, transparent und verbindlich – ohne versteckte Kosten.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Versichert & angemeldet</span>
+              <span class="pill">Feste Ansprechpartner</span>
+              <span class="pill">Flexible Termine</span>
+              <span class="pill">Faire & klare Preise</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-why">
+              <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.5rem;">Typische Situationen</h3>
+              <ul style="list-style:none; padding-left:0; margin-top:0.4rem;">
+                <li>• Sie haben beruflich viel zu tun und wollen den Haushalt abgeben.</li>
+                <li>• Ihre Eltern werden älter und brauchen verlässliche Alltagshilfe.</li>
+                <li>• Ein Umzug steht an – Wohnung muss besenrein + sauber übergeben werden.</li>
+                <li>• Sie betreiben eine Ferienwohnung und suchen einen zuverlässigen Service-Partner.</li>
+              </ul>
+              <p style="margin-top:0.85rem;">
+                Wenn Sie sich in einer dieser Situationen wiederfinden, ist unser Team genau dafür da.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREISE -->
+      <section class="section section-light" id="preise">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 class="section-title">Preise & Orientierung</h2>
+            <p class="section-subtitle">
+              Jede Wohnung und jede Situation ist anders – wir geben Ihnen eine transparente Orientierung.
+            </p>
+          </div>
+          <p class="pricing-note">
+            Alle Preise verstehen sich als Richtwerte inkl. gesetzlicher MwSt. Ein individuelles Angebot erhalten Sie nach kurzer
+            Beschreibung Ihrer Situation.
+          </p>
+          <div class="pricing-grid">
+            <div class="card">
+              <h3>Reinigung & Hausservice</h3>
+              <div style="margin-top:0.6rem;">
+                <div class="price-row">
+                  <span class="price-label">Haushaltsreinigung</span>
+                  <span class="price-value">ab 35 €/Stunde</span>
+                </div>
+                <div class="price-row">
+                  <span class="price-label">Einzugs-/Auszugsreinigung</span>
+                  <span class="price-value">ab 189 € pauschal</span>
+                </div>
+                <div class="price-row">
+                  <span class="price-label">Büroreinigung</span>
+                  <span class="price-value">Monats-Pauschale auf Anfrage</span>
+                </div>
+                <div class="price-row">
+                  <span class="price-label">Hausservice / Kleinreparaturen</span>
+                  <span class="price-value">ab 45 €/Stunde</span>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Alltagshilfe</h3>
+              <div style="margin-top:0.6rem;">
+                <div class="price-row">
+                  <span class="price-label">Unterstützung im Haushalt</span>
+                  <span class="price-value">ab 30 €/Stunde</span>
+                </div>
+                <div class="price-row">
+                  <span class="price-label">Begleitung zu Terminen</span>
+                  <span class="price-value">ab 35 €/Stunde</span>
+                </div>
+                <div class="price-row">
+                  <span class="price-label">Seniorenbetreuung im Alltag</span>
+                  <span class="price-value">individuelle Pakete</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:1rem; font-size:0.85rem; color:var(--color-muted);">
+            <strong>Hinweis:</strong> Für regelmäßige Einsätze bieten wir vergünstigte Pauschalen und Rahmenverträge an.
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section section-light">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 class="section-title">Stimmen unserer Kunden</h2>
+            <p class="section-subtitle">
+              So beschreiben uns Menschen, die bereits mit uns zusammenarbeiten.
+            </p>
+          </div>
+          <div class="testimonial-grid">
+            <div class="testimonial">
+              „Sehr zuverlässig, gründlich und flexibel. Endlich fühlt sich der Haushalt wieder leicht an.“
+              <strong>Janine L., Hamburg</strong>
+            </div>
+            <div class="testimonial">
+              „Meine Mutter bekommt nun Unterstützung im Alltag – das gibt uns allen ein gutes Gefühl.“
+              <strong>Thomas R., Angehöriger</strong>
+            </div>
+            <div class="testimonial">
+              „Top Service für unsere Ferienwohnung. Gästezufriedenheit und Bewertungen sind deutlich gestiegen.“
+              <strong>Betreiber einer Ferienwohnung</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KONTAKT -->
+      <section class="section" id="kontakt">
+        <div class="section-inner contact-grid">
+          <div>
+            <div class="section-heading">
+              <h2 class="section-title">Unverbindlich anfragen</h2>
+              <p class="section-subtitle">
+                Beschreiben Sie kurz, wobei wir Sie unterstützen dürfen – wir melden uns innerhalb von 24 Stunden zurück.
+              </p>
+            </div>
+            <div style="font-size:0.9rem; color:rgba(248,249,250,0.8); margin-bottom:1rem;">
+              <p><strong>Telefon:</strong> +49 40 12345678</p>
+              <p><strong>E-Mail:</strong> info@cleancare-hamburg.de</p>
+            </div>
+            <p class="form-helper" style="color:rgba(248,249,250,0.8);">
+              Alternativ können Sie uns direkt anrufen oder eine E-Mail mit Ihren Kontaktdaten und dem gewünschten Service senden.
+            </p>
+          </div>
+          <div>
+            <form action="mailto:info@cleancare-hamburg.de" method="post" enctype="text/plain">
+              <label>
+                Name
+                <input type="text" name="name" placeholder="Ihr Name" required />
+              </label>
+              <label>
+                Ort / Stadtteil
+                <input type="text" name="location" placeholder="Hamburg – z. B. Eimsbüttel" />
+              </label>
+              <label>
+                Gewünschter Service
+                <select name="service">
+                  <option value="">Bitte wählen…</option>
+                  <option value="reinigung">Reinigung</option>
+                  <option value="hausservice">Hausservice</option>
+                  <option value="alltagshilfe">Alltagshilfe</option>
+                  <option value="kombiniert">Mehrere Leistungen</option>
+                </select>
+              </label>
+              <label>
+                Ihre Nachricht
+                <textarea name="message" placeholder="Beschreiben Sie kurz, wobei wir helfen dürfen."></textarea>
+              </label>
+              <label>
+                Telefonnummer
+                <input type="tel" name="phone" placeholder="Für Rückfragen oder Terminabstimmung" />
+              </label>
+              <button type="submit" class="btn" style="margin-top:0.25rem;">Anfrage senden</button>
+              <div class="form-helper">
+                Mit dem Absenden der Anfrage erklären Sie sich damit einverstanden, dass wir Sie zur Bearbeitung Ihrer Anfrage kontaktieren.
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          © 2025 CleanCare Hamburg. Alle Rechte vorbehalten.
+        </div>
+        <div class="footer-links">
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
