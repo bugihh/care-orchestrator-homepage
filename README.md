@@ -1,5 +1,3 @@
-# care-orchestrator-homepage
-Homepage für Care-Orchestrator (MVP)
 <!DOCTYPE html>
 <html lang="de">
 <head>
