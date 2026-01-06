@@ -1,20 +1,26 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CleanCare Hamburg – Reinigung, Hausservice & Alltagshilfe</title>
-  <meta name="description" content="Professionelle Reinigung, Hausservice & Alltagshilfe in Hamburg. Zuverlässig, freundlich, versichert. Jetzt unverbindlich anfragen.">
+  <title>Care-Orchestrator – Akut-Stabilisierung & Koordination nach Entlassung</title>
+  <meta name="description" content="Care-Orchestrator stabilisiert Pflegesituationen in den ersten 14 Tagen nach Krankenhausentlassung. Koordination, Priorisierung, Entlastung für Angehörige – keine Pflegeleistungen.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <img src="assets/images/care123.png" alt="Care-Orchestrator Logo" class="logo-img" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
+      /* CI (beibehalten) */
       --color-deep-navy: #1C2E4A;
       --color-soft-turquoise: #5BC6C9;
       --color-warm-coral: #FF8A65;
       --color-off-white: #F8F9FA;
+      --color-muted-light: #E7ECF2;
+
+      /* UI */
       --color-text: #111827;
       --color-muted: #6b7280;
       --max-width: 1120px;
@@ -22,11 +28,7 @@
       --radius-button: 8px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -35,22 +37,10 @@
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
 
     header {
       position: sticky;
@@ -59,10 +49,6 @@
       background: rgba(28, 46, 74, 0.96);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    
-    .logo-img { 
-      height: 36px; width: auto; display: block; 
     }
 
     .nav {
@@ -80,26 +66,14 @@
       align-items: center;
       gap: 0.75rem;
       color: #ffffff;
+      min-width: 0;
     }
 
-    .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 14px;
-      background: var(--color-soft-turquoise);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-deep-navy);
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-
-    .logo-text {
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      font-size: 0.95rem;
-      text-transform: uppercase;
+    .logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+      border-radius: 10px; /* optional – entfernt, falls du keine Abrundung willst */
     }
 
     .nav-right {
@@ -108,6 +82,8 @@
       gap: 0.75rem;
       color: #ffffff;
       font-size: 0.85rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .btn,
@@ -146,18 +122,11 @@
       background: rgba(255,255,255,0.08);
     }
 
-    main {
-      flex: 1;
-    }
+    main { flex: 1; }
 
-    .section {
-      padding: 32px 1.25rem;
-    }
-
+    .section { padding: 32px 1.25rem; }
     @media (min-width: 768px) {
-      .section {
-        padding: 64px 1.25rem;
-      }
+      .section { padding: 64px 1.25rem; }
     }
 
     .section-inner {
@@ -179,7 +148,7 @@
 
     @media (min-width: 900px) {
       .hero-grid {
-        grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
       }
     }
 
@@ -201,7 +170,7 @@
 
     .hero-subtitle {
       font-size: 0.98rem;
-      max-width: 480px;
+      max-width: 540px;
       color: rgba(248, 249, 250, 0.82);
       margin-bottom: 1.75rem;
     }
@@ -209,7 +178,7 @@
     .hero-cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 28px;
+      gap: 16px;
       margin-bottom: 1.25rem;
       align-items: center;
     }
@@ -250,13 +219,13 @@
       overflow: hidden;
     }
 
-    /* Abstrakte, playful-clean Figur */
     .shape-bg {
       position: absolute;
       inset: 0;
       opacity: 0.7;
-      background: radial-gradient(circle at 10% 10%, rgba(91,198,201,0.25), transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(255,138,101,0.25), transparent 52%);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(91,198,201,0.25), transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255,138,101,0.25), transparent 52%);
     }
 
     .shape-main {
@@ -284,12 +253,7 @@
       box-shadow: 0 12px 30px rgba(5, 150, 160, 0.6);
     }
 
-    .bubble.b1 {
-      width: 60px;
-      height: 60px;
-      top: 12%;
-      left: 10%;
-    }
+    .bubble.b1 { width: 60px; height: 60px; top: 12%; left: 10%; }
 
     .bubble.b2 {
       width: 42px;
@@ -307,19 +271,8 @@
       box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
     }
 
-    .tile.t1 {
-      width: 48%;
-      height: 32%;
-      top: 16%;
-      right: 8%;
-    }
-
-    .tile.t2 {
-      width: 40%;
-      height: 28%;
-      bottom: 18%;
-      left: 12%;
-    }
+    .tile.t1 { width: 52%; height: 34%; top: 16%; right: 8%; }
+    .tile.t2 { width: 44%; height: 28%; bottom: 18%; left: 12%; }
 
     .tile-bar {
       position: absolute;
@@ -328,18 +281,8 @@
       background: var(--color-soft-turquoise);
     }
 
-    .tile-bar.tb1 {
-      width: 60%;
-      top: 24%;
-      left: 20%;
-    }
-
-    .tile-bar.tb2 {
-      width: 40%;
-      top: 40%;
-      left: 20%;
-      background: var(--color-warm-coral);
-    }
+    .tile-bar.tb1 { width: 64%; top: 24%; left: 18%; }
+    .tile-bar.tb2 { width: 42%; top: 40%; left: 18%; background: var(--color-warm-coral); }
 
     .hero-illustration-label {
       position: absolute;
@@ -352,48 +295,28 @@
     }
 
     /* Section headings */
-    .section-heading {
-      margin-bottom: 1.5rem;
-      color: #ffffff;
-    }
-
+    .section-heading { margin-bottom: 1.5rem; color: #ffffff; }
     .section-title {
       font-size: 1.6rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
-
     .section-subtitle {
       font-size: 0.95rem;
       color: rgba(248, 249, 250, 0.72);
-      max-width: 640px;
+      max-width: 820px;
     }
 
     /* Light sections */
-    .section-light {
-      background: var(--color-off-white);
-      color: var(--color-text);
-    }
+    .section-light { background: var(--color-off-white); color: var(--color-text); }
+    .section-light .section-heading { color: var(--color-text); }
+    .section-light .section-subtitle { color: var(--color-muted); }
 
-    .section-light .section-heading {
-      color: var(--color-text);
-    }
-
-    .section-light .section-subtitle {
-      color: var(--color-muted);
-    }
-
-    /* Service cards */
-    .service-grid {
-      display: grid;
-      gap: 1.25rem;
-    }
-
+    /* Cards */
+    .service-grid { display: grid; gap: 1.25rem; }
     @media (min-width: 900px) {
-      .service-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     .card {
@@ -419,6 +342,8 @@
       font-weight: 500;
     }
 
+    .badge-accent { background: rgba(255, 138, 101, 0.14); }
+
     .card h3 {
       font-size: 1.05rem;
       font-weight: 600;
@@ -432,28 +357,15 @@
       margin-top: 0.4rem;
     }
 
-    .card ul li + li {
-      margin-top: 0.25rem;
-    }
+    .card ul li + li { margin-top: 0.25rem; }
 
-    /* Why us */
-    .why-grid {
-      display: grid;
-      gap: 1.75rem;
-    }
-
+    /* Why/Process */
+    .why-grid { display: grid; gap: 1.75rem; }
     @media (min-width: 900px) {
-      .why-grid {
-        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
-      }
+      .why-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr); }
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
-    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
 
     .pill {
       padding: 0.25rem 0.75rem;
@@ -480,15 +392,9 @@
       margin-bottom: 0.75rem;
     }
 
-    .pricing-grid {
-      display: grid;
-      gap: 1rem;
-    }
-
+    .pricing-grid { display: grid; gap: 1rem; }
     @media (min-width: 768px) {
-      .pricing-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     .price-row {
@@ -499,59 +405,41 @@
       margin-bottom: 0.35rem;
     }
 
-    .price-label {
-      color: var(--color-muted);
-    }
+    .price-label { color: var(--color-muted); }
+    .price-value { font-weight: 600; color: var(--color-deep-navy); }
 
-    .price-value {
-      font-weight: 600;
-      color: var(--color-deep-navy);
-    }
-
-    /* Testimonials */
-    .testimonial-grid {
-      display: grid;
-      gap: 1rem;
-    }
-
-    @media (min-width: 900px) {
-      .testimonial-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    .testimonial {
+    /* Differentiation table */
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
       background: #ffffff;
       border-radius: var(--radius-card);
-      padding: 1rem;
+      overflow: hidden;
       border: 1px solid rgba(15, 23, 42, 0.06);
-      font-size: 0.88rem;
-      color: var(--color-muted);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
     }
-
-    .testimonial strong {
-      display: block;
-      margin-top: 0.6rem;
-      color: var(--color-text);
-      font-size: 0.82rem;
+    th, td {
+      padding: 0.85rem 0.8rem;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+      vertical-align: top;
+      text-align: left;
+      font-size: 0.9rem;
     }
+    th {
+      background: rgba(91, 198, 201, 0.12);
+      color: #0f172a;
+      font-weight: 600;
+    }
+    tr:last-child td { border-bottom: 0; }
 
     /* Contact */
-    .contact-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-
+    .contact-grid { display: grid; gap: 1.5rem; }
     @media (min-width: 900px) {
-      .contact-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
-      }
+      .contact-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr); }
     }
 
-    form {
-      display: grid;
-      gap: 0.75rem;
-    }
+    form { display: grid; gap: 0.75rem; }
 
     label {
       display: flex;
@@ -561,9 +449,7 @@
       gap: 0.3rem;
     }
 
-    input,
-    select,
-    textarea {
+    input, select, textarea {
       border-radius: 10px;
       border: 1px solid #d1d5db;
       padding: 0.55rem 0.7rem;
@@ -574,22 +460,13 @@
       transition: border-color 0.12s ease-out, box-shadow 0.12s ease-out;
     }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
+    input:focus, select:focus, textarea:focus {
       border-color: var(--color-soft-turquoise);
       box-shadow: 0 0 0 1px rgba(91, 198, 201, 0.5);
     }
 
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .form-helper {
-      font-size: 0.75rem;
-      color: var(--color-muted);
-    }
+    textarea { min-height: 110px; resize: vertical; }
+    .form-helper { font-size: 0.75rem; color: var(--color-muted); }
 
     footer {
       border-top: 1px solid rgba(248, 249, 250, 0.1);
@@ -608,40 +485,35 @@
     }
 
     @media (min-width: 640px) {
-      .footer-inner {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
+      .footer-inner { flex-direction: row; justify-content: space-between; align-items: center; }
     }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
+    .footer-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
     .footer-links a {
       text-decoration: underline;
       text-decoration-color: rgba(248, 249, 250, 0.25);
     }
+    .footer-links a:hover { text-decoration-color: var(--color-soft-turquoise); }
 
-    .footer-links a:hover {
-      text-decoration-color: var(--color-soft-turquoise);
-    }
+    /* Anchor offset for sticky header */
+    .anchor { scroll-margin-top: 90px; }
   </style>
 </head>
+
 <body>
   <div class="page">
     <header>
       <div class="nav">
         <div class="logo-wrap">
-          <div class="logo-mark">CC</div>
-          <div class="logo-text">CleanCare Hamburg</div>
+          <img
+            src="assets/images/care123.png"
+            alt="Care-Orchestrator – Akut-Stabilisierung & Koordination nach Entlassung"
+            class="logo-img"
+          />
         </div>
         <div class="nav-right">
-          <span>+49 40 12345678</span>
-          <a href="#kontakt" class="btn-secondary">Anfrage</a>
+          <span>Deutschlandweit · Remote</span>
+          <a href="#kontakt" class="btn-secondary">Erstgespräch</a>
         </div>
       </div>
     </header>
@@ -651,22 +523,23 @@
       <section class="section hero">
         <div class="section-inner hero-grid">
           <div>
-            <div class="hero-eyebrow">Sauberkeit · Hausservice · Entlastung</div>
-            <h1 class="hero-title">Reinigung, Hausservice & Alltagshilfe in Hamburg</h1>
+            <div class="hero-eyebrow">Pflege als Projektmanagement · 14 Tage Stabilisierung</div>
+            <h1 class="hero-title">Wir stabilisieren Pflegesituationen in den ersten 14 Tagen.</h1>
             <p class="hero-subtitle">
-              Wir unterstützen Haushalte, Senioren, Familien und kleine Unternehmen in Hamburg
-              mit zuverlässiger Reinigung, praktischem Hausservice und alltagsnaher Hilfe.
-              Transparent, freundlich und versichert.
+              Wenn Pflege plötzlich beginnt, entsteht Chaos: Entlassung, Anbieter, Hilfsmittel, Anträge, Familie.
+              Wir bringen Struktur, priorisieren die nächsten Schritte und koordinieren die Umsetzung –
+              damit nach dem Krankenhaus der Alltag wieder funktioniert.
             </p>
             <div class="hero-cta-row">
-              <a href="#kontakt" class="btn">Jetzt unverbindlich anfragen</a>
-              <a href="tel:+494012345678" class="btn-secondary">Direkt anrufen</a>
+              <a href="#kontakt" class="btn">Erstgespräch anfragen</a>
+              <a href="#so-funktionierts" class="btn-secondary">So funktioniert’s</a>
             </div>
             <div class="hero-meta">
-              <span class="hero-pill">Antwort innerhalb von 24 Stunden</span>
-              <span>Flexible Termine · Gewerblich registriert & versichert</span>
+              <span class="hero-pill">Klar begrenzt: 14 Tage</span>
+              <span>Diskret · Dokumentiert · Keine Pflegeleistungen</span>
             </div>
           </div>
+
           <div class="hero-illustration">
             <div class="hero-illustration-inner">
               <div class="shape-bg"></div>
@@ -682,7 +555,7 @@
                 </div>
               </div>
               <div class="hero-illustration-label">
-                Playfully clean: abstrakte Figur für Ordnung, Struktur & Unterstützung im Alltag.
+                Abstrakte Visualisierung: Chaos → Struktur → Stabilität (in 14 Tagen).
               </div>
             </div>
           </div>
@@ -690,228 +563,347 @@
       </section>
 
       <!-- LEISTUNGEN -->
-      <section class="section section-light" id="leistungen">
+      <section class="section section-light anchor" id="leistungen">
         <div class="section-inner">
           <div class="section-heading">
-            <h2 class="section-title">Unsere Leistungen</h2>
+            <h2 class="section-title">Unser Akut-Paket (14 Tage)</h2>
             <p class="section-subtitle">
-              Drei Bereiche – ein Ziel: Ihr Alltag wird leichter. Wählen Sie die Unterstützung, die zu Ihnen passt.
+              Ein klar begrenzter Service für Angehörige nach Krankenhausentlassung – mit konkreten Deliverables statt endloser Beratung.
+              Wir sind kein Pflegedienst und erbringen keine Pflegeleistungen.
             </p>
           </div>
 
           <div class="service-grid">
             <article class="card">
-              <div class="badge">Reinigung</div>
-              <h3>Haushalt & Büro</h3>
+              <div class="badge">Einordnung</div>
+              <h3>Situation verstehen & priorisieren</h3>
               <ul>
-                <li>Regelmäßige Haushaltsreinigung</li>
-                <li>Grund- & Fensterreinigung</li>
-                <li>Einzugs- & Auszugsreinigung</li>
-                <li>Büro- & Praxisreinigung</li>
-                <li>Airbnb- & Ferienwohnung-Service</li>
+                <li>Kurzer Intake (Telefon/Video) + Fakten sammeln</li>
+                <li>Engpässe, Risiken und Abhängigkeiten erkennen</li>
+                <li>14-Tage-Plan als Prioritätenliste (handlungsfähig)</li>
+                <li>Rollen in der Familie klären (wer entscheidet?)</li>
               </ul>
             </article>
 
             <article class="card">
-              <div class="badge">Hausservice</div>
-              <h3>Rund ums Zuhause</h3>
+              <div class="badge">Koordination</div>
+              <h3>Umsetzung organisieren (Kernwert)</h3>
               <ul>
-                <li>Möbelmontage & Aufbau</li>
-                <li>Lampen, Gardinen & Regale montieren</li>
-                <li>Entrümpelung & Kleintransporte</li>
-                <li>Gartenpflege & Terrassenreinigung</li>
-                <li>Unterstützung beim Umzug</li>
+                <li>3–5 Anbieter anfragen, Starttermine vergleichen</li>
+                <li>Konsequent nachhaken & Zusagen bestätigen</li>
+                <li>Plan B/C: Übergangslösungen vorbereiten</li>
+                <li>Hilfsmittel koordinieren (Verordnung → Sanitätshaus)</li>
               </ul>
             </article>
 
             <article class="card">
-              <div class="badge">Alltagshilfe</div>
-              <h3>Für Senioren & Familien</h3>
+              <div class="badge badge-accent">Entlastung</div>
+              <h3>Überblick schaffen & Verantwortung senken</h3>
               <ul>
-                <li>Einkäufe & Besorgungen</li>
-                <li>Begleitung zu Arztterminen & Terminen</li>
-                <li>Haushaltsunterstützung im Alltag</li>
-                <li>Betreuung (nicht pflegerisch)</li>
-                <li>Haustier- & Pflanzenbetreuung</li>
+                <li>Telefonate & Koordination übernehmen (nach Mandat)</li>
+                <li>Informationen filtern, Entscheidungen vorbereiten</li>
+                <li>Dokumentation: Status, nächste Schritte, Ansprechpartner</li>
+                <li>Übergabe + Exit: stabile Versorgung, klare Zuständigkeiten</li>
               </ul>
             </article>
+          </div>
+
+          <div style="margin-top:1rem; font-size:0.85rem; color:var(--color-muted);">
+            <strong>Abgrenzung:</strong> Keine medizinische oder rechtliche Beratung. Keine Pflegeleistungen. Keine Garantie auf Verfügbarkeiten Dritter.
+            Wir koordinieren, strukturieren und halten nach – im Auftrag der Angehörigen.
           </div>
         </div>
       </section>
 
-      <!-- WARUM WIR -->
-      <section class="section" id="warum-wir">
+      <!-- WARUM WIR / PROZESS -->
+      <section class="section anchor" id="so-funktionierts">
         <div class="section-inner why-grid">
           <div>
             <div class="section-heading">
-              <h2 class="section-title">Warum CleanCare Hamburg?</h2>
+              <h2 class="section-title">So arbeiten wir</h2>
               <p class="section-subtitle">
-                Wir kombinieren professionelle Abläufe mit einem sehr persönlichen Service – für Menschen, die Wert auf Verlässlichkeit legen.
+                Entlassmanagement organisiert die Entlassung. Wir stabilisieren die erste Zeit danach – mit Ownership, Nachhalten und einem klaren Exit.
               </p>
             </div>
+
             <p style="font-size:0.92rem; color:rgba(248,249,250,0.8); margin-bottom:0.75rem;">
-              Wir wissen, dass wir in sensible Bereiche Ihres Lebens und Ihrer Räume kommen.
-              Deswegen sind Verlässlichkeit, Diskretion und Sorgfalt für uns selbstverständlich.
-              Wir arbeiten strukturiert, transparent und verbindlich – ohne versteckte Kosten.
+              Wir sind eine <strong>Intervention</strong>, keine Dauerbegleitung: kurzer Einstieg, klare Struktur,
+              konsequentes Nachhalten – und dann Übergabe an Familie und Leistungserbringer.
+              Das maximiert Entlastung, reduziert Chaos und schafft wieder Handlungsfähigkeit.
             </p>
+
             <div class="pill-row">
-              <span class="pill">Versichert & angemeldet</span>
-              <span class="pill">Feste Ansprechpartner</span>
-              <span class="pill">Flexible Termine</span>
-              <span class="pill">Faire & klare Preise</span>
+              <span class="pill">Klar begrenzt (14 Tage)</span>
+              <span class="pill">Ownership & Nachhalten</span>
+              <span class="pill">Plan B/C vorbereitet</span>
+              <span class="pill">Dokumentiert & transparent</span>
             </div>
           </div>
+
           <div>
             <div class="card-why">
-              <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.5rem;">Typische Situationen</h3>
+              <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.5rem;">14-Tage-Ablauf (Übersicht)</h3>
               <ul style="list-style:none; padding-left:0; margin-top:0.4rem;">
-                <li>• Sie haben beruflich viel zu tun und wollen den Haushalt abgeben.</li>
-                <li>• Ihre Eltern werden älter und brauchen verlässliche Alltagshilfe.</li>
-                <li>• Ein Umzug steht an – Wohnung muss besenrein + sauber übergeben werden.</li>
-                <li>• Sie betreiben eine Ferienwohnung und suchen einen zuverlässigen Service-Partner.</li>
+                <li>• <strong>Tag 0–1:</strong> Erstkontakt, Qualifizierung, Mandat & Datenschutz</li>
+                <li>• <strong>Tag 1–3:</strong> Analyse, Priorisierung, Maßnahmenplan</li>
+                <li>• <strong>Tag 3–10:</strong> Koordination & Durchziehen (Anbieter, Hilfsmittel, Übergangslösungen)</li>
+                <li>• <strong>Tag 10–14:</strong> Stabilitätscheck, Übergabe, Exit</li>
               </ul>
               <p style="margin-top:0.85rem;">
-                Wenn Sie sich in einer dieser Situationen wiederfinden, ist unser Team genau dafür da.
+                Ziel ist nicht „perfekt“, sondern <strong>stabil genug</strong>, damit die Versorgung zuverlässig läuft.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABGRENZUNG (TABELLE) -->
+      <section class="section section-light anchor" id="abgrenzung">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 class="section-title">Abgrenzung im System</h2>
+            <p class="section-subtitle">
+              Wir ersetzen keine Akteure – wir schließen die operative Lücke nach der Entlassung.
+            </p>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Auftraggeber</th>
+                  <th>Zeitfenster</th>
+                  <th>Ownership</th>
+                  <th>Umsetzungstiefe</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Entlassmanagement</strong></td>
+                  <td>Klinik / System</td>
+                  <td>bis Entlassung</td>
+                  <td>formal</td>
+                  <td>Planung/Übergabe</td>
+                </tr>
+                <tr>
+                  <td><strong>Pflegedienst</strong></td>
+                  <td>Pflegebedürftige / Kasse</td>
+                  <td>laufend</td>
+                  <td>für Pflegeleistungen</td>
+                  <td>Ausführung (Pflege)</td>
+                </tr>
+                <tr>
+                  <td><strong>Pflegeberatung (§7a)</strong></td>
+                  <td>Kasse</td>
+                  <td>punktuell</td>
+                  <td>beratend</td>
+                  <td>Information/Orientierung</td>
+                </tr>
+                <tr>
+                  <td><strong>24h Vermittlung</strong></td>
+                  <td>Privat</td>
+                  <td>Vollzeitlösung</td>
+                  <td>Betreuung fokussiert</td>
+                  <td>eine Lösung (nicht immer passend)</td>
+                </tr>
+                <tr>
+                  <td><strong>Care-Orchestrator</strong></td>
+                  <td><strong>Angehörige</strong></td>
+                  <td><strong>14 Tage nach Ereignis</strong></td>
+                  <td><strong>faktisch (Nachhalten)</strong></td>
+                  <td><strong>Koordination + Plan B/C + Übergabe</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top:1rem; font-size:0.85rem; color:var(--color-muted);">
+            <strong>Hinweis:</strong> Wir können keine Verfügbarkeit Dritter garantieren. Entscheidungen bleiben bei Ihnen.
+            Wir sorgen für Struktur, Optionen und konsequentes Nachhalten.
           </div>
         </div>
       </section>
 
       <!-- PREISE -->
-      <section class="section section-light" id="preise">
+      <section class="section section-light anchor" id="preise">
         <div class="section-inner">
           <div class="section-heading">
             <h2 class="section-title">Preise & Orientierung</h2>
             <p class="section-subtitle">
-              Jede Wohnung und jede Situation ist anders – wir geben Ihnen eine transparente Orientierung.
+              Transparent und klar begrenzt. Nach einem kurzen Erstgespräch nennen wir Ihnen eine klare Spanne.
             </p>
           </div>
+
           <p class="pricing-note">
-            Alle Preise verstehen sich als Richtwerte inkl. gesetzlicher MwSt. Ein individuelles Angebot erhalten Sie nach kurzer
-            Beschreibung Ihrer Situation.
+            Richtwerte. Abhängig von Komplexität, Region und Verfügbarkeit von Leistungserbringern. Wir rechnen nicht über Pflegekassen ab.
           </p>
+
           <div class="pricing-grid">
             <div class="card">
-              <h3>Reinigung & Hausservice</h3>
+              <h3>Akut-Paket (14 Tage)</h3>
               <div style="margin-top:0.6rem;">
                 <div class="price-row">
-                  <span class="price-label">Haushaltsreinigung</span>
-                  <span class="price-value">ab 35 €/Stunde</span>
+                  <span class="price-label">Leistung</span>
+                  <span class="price-value">Stabilisierung & Koordination</span>
                 </div>
                 <div class="price-row">
-                  <span class="price-label">Einzugs-/Auszugsreinigung</span>
-                  <span class="price-value">ab 189 € pauschal</span>
+                  <span class="price-label">Preisrahmen</span>
+                  <span class="price-value">600–1.200 €</span>
                 </div>
                 <div class="price-row">
-                  <span class="price-label">Büroreinigung</span>
-                  <span class="price-value">Monats-Pauschale auf Anfrage</span>
-                </div>
-                <div class="price-row">
-                  <span class="price-label">Hausservice / Kleinreparaturen</span>
-                  <span class="price-value">ab 45 €/Stunde</span>
+                  <span class="price-label">Enthalten</span>
+                  <span class="price-value">Plan · Nachhalten · Übergabe</span>
                 </div>
               </div>
+              <div style="margin-top:0.8rem; font-size:0.85rem; color:var(--color-muted);">
+                Ideal, wenn Entlassung bevorsteht oder die Versorgung nach Entlassung bricht.
+              </div>
             </div>
+
             <div class="card">
-              <h3>Alltagshilfe</h3>
+              <h3>Optional: Re-Entry / Sparring</h3>
               <div style="margin-top:0.6rem;">
                 <div class="price-row">
-                  <span class="price-label">Unterstützung im Haushalt</span>
-                  <span class="price-value">ab 30 €/Stunde</span>
+                  <span class="price-label">Kurz-Check / Telefonat</span>
+                  <span class="price-value">auf Anfrage</span>
                 </div>
                 <div class="price-row">
-                  <span class="price-label">Begleitung zu Terminen</span>
-                  <span class="price-value">ab 35 €/Stunde</span>
+                  <span class="price-label">Monatliche Begleitung</span>
+                  <span class="price-value">79–129 €/Monat</span>
                 </div>
                 <div class="price-row">
-                  <span class="price-label">Seniorenbetreuung im Alltag</span>
-                  <span class="price-value">individuelle Pakete</span>
+                  <span class="price-label">Ziel</span>
+                  <span class="price-value">Rückfall-Chaos vermeiden</span>
                 </div>
+              </div>
+              <div style="margin-top:0.8rem; font-size:0.85rem; color:var(--color-muted);">
+                Sinnvoll, wenn es wiederholt zu Ausfällen / Eskalationen kommt.
               </div>
             </div>
           </div>
+
           <div style="margin-top:1rem; font-size:0.85rem; color:var(--color-muted);">
-            <strong>Hinweis:</strong> Für regelmäßige Einsätze bieten wir vergünstigte Pauschalen und Rahmenverträge an.
+            <strong>Praxis:</strong> Übergangslösungen (z. B. Betreuung über §45b) koordinieren wir – sofern Pflegegrad vorhanden und Anbieter anerkannt sind.
           </div>
         </div>
       </section>
 
-      <!-- TESTIMONIALS -->
-      <section class="section section-light">
+      <!-- FAQ -->
+      <section class="section anchor" id="faq">
         <div class="section-inner">
           <div class="section-heading">
-            <h2 class="section-title">Stimmen unserer Kunden</h2>
-            <p class="section-subtitle">
-              So beschreiben uns Menschen, die bereits mit uns zusammenarbeiten.
-            </p>
+            <h2 class="section-title">FAQ</h2>
+            <p class="section-subtitle">Kurz und klar – die häufigsten Fragen.</p>
           </div>
-          <div class="testimonial-grid">
-            <div class="testimonial">
-              „Sehr zuverlässig, gründlich und flexibel. Endlich fühlt sich der Haushalt wieder leicht an.“
-              <strong>Janine L., Hamburg</strong>
-            </div>
-            <div class="testimonial">
-              „Meine Mutter bekommt nun Unterstützung im Alltag – das gibt uns allen ein gutes Gefühl.“
-              <strong>Thomas R., Angehöriger</strong>
-            </div>
-            <div class="testimonial">
-              „Top Service für unsere Ferienwohnung. Gästezufriedenheit und Bewertungen sind deutlich gestiegen.“
-              <strong>Betreiber einer Ferienwohnung</strong>
-            </div>
+
+          <div class="service-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+            <article class="card">
+              <div class="badge">Frage</div>
+              <h3>Macht das nicht das Krankenhaus?</h3>
+              <ul>
+                <li>Entlassmanagement organisiert die Entlassung.</li>
+                <li>Wir stabilisieren die Zeit danach – inkl. Nachhalten & Plan B/C.</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="badge">Frage</div>
+              <h3>Sind Sie ein Pflegedienst?</h3>
+              <ul>
+                <li>Nein. Wir erbringen keine Pflegeleistungen.</li>
+                <li>Wir koordinieren und strukturieren Entscheidungen.</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="badge">Frage</div>
+              <h3>Können Sie Pflegegrad garantieren?</h3>
+              <ul>
+                <li>Nein. Keine Rechtsberatung, keine Ergebnisgarantien.</li>
+                <li>Wir helfen bei Struktur, Unterlagen, Prozessklarheit.</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="badge">Frage</div>
+              <h3>Was passiert nach 14 Tagen?</h3>
+              <ul>
+                <li>Übergabe an Familie & Leistungserbringer mit Status & Plan.</li>
+                <li>Optional: Re-Entry bei erneuter Eskalation.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div style="margin-top:1rem; font-size:0.85rem; color:rgba(248,249,250,0.8);">
+            <strong>Hinweis:</strong> Kein Notfallservice / keine 24/7-Erreichbarkeit. Bei medizinischen Notfällen bitte 112.
           </div>
         </div>
       </section>
 
       <!-- KONTAKT -->
-      <section class="section" id="kontakt">
+      <section class="section anchor" id="kontakt">
         <div class="section-inner contact-grid">
           <div>
             <div class="section-heading">
-              <h2 class="section-title">Unverbindlich anfragen</h2>
+              <h2 class="section-title">Erstgespräch anfragen</h2>
               <p class="section-subtitle">
-                Beschreiben Sie kurz, wobei wir Sie unterstützen dürfen – wir melden uns innerhalb von 24 Stunden zurück.
+                Beschreiben Sie kurz Ihre Situation. Wir melden uns werktags zeitnah mit dem nächsten Schritt.
               </p>
             </div>
+
             <div style="font-size:0.9rem; color:rgba(248,249,250,0.8); margin-bottom:1rem;">
-              <p><strong>Telefon:</strong> +49 40 12345678</p>
-              <p><strong>E-Mail:</strong> info@cleancare-hamburg.de</p>
+              <p><strong>Kontakt:</strong> E-Mail oder Formular</p>
+              <p><strong>Datenschutz:</strong> Bitte keine sensiblen Gesundheitsdetails per Freitext. Rahmendaten reichen für den Start.</p>
             </div>
+
             <p class="form-helper" style="color:rgba(248,249,250,0.8);">
-              Alternativ können Sie uns direkt anrufen oder eine E-Mail mit Ihren Kontaktdaten und dem gewünschten Service senden.
+              Wir arbeiten ausschließlich im Auftrag der Angehörigen und mit Einwilligung. Wir dokumentieren transparent.
             </p>
           </div>
+
           <div>
-            <form action="mailto:info@cleancare-hamburg.de" method="post" enctype="text/plain">
+            <form action="mailto:kontakt@care-orchestrator.de" method="post" enctype="text/plain">
               <label>
                 Name
                 <input type="text" name="name" placeholder="Ihr Name" required />
               </label>
+
               <label>
-                Ort / Stadtteil
-                <input type="text" name="location" placeholder="Hamburg – z. B. Eimsbüttel" />
+                E-Mail
+                <input type="email" name="email" placeholder="name@beispiel.de" required />
               </label>
+
               <label>
-                Gewünschter Service
-                <select name="service">
+                PLZ
+                <input type="text" name="plz" placeholder="z. B. 20095" required />
+              </label>
+
+              <label>
+                Situation
+                <select name="situation" required>
                   <option value="">Bitte wählen…</option>
-                  <option value="reinigung">Reinigung</option>
-                  <option value="hausservice">Hausservice</option>
-                  <option value="alltagshilfe">Alltagshilfe</option>
-                  <option value="kombiniert">Mehrere Leistungen</option>
+                  <option value="entlassung-steht-an">Entlassung steht bevor (24–72h)</option>
+                  <option value="bereits-entlassen">Bereits entlassen – Versorgung unsicher</option>
+                  <option value="versorgung-bricht-weg">Versorgung bricht weg / Ausfall</option>
+                  <option value="sonstiges">Sonstiges</option>
                 </select>
               </label>
+
               <label>
-                Ihre Nachricht
-                <textarea name="message" placeholder="Beschreiben Sie kurz, wobei wir helfen dürfen."></textarea>
+                Größter Engpass (kurz)
+                <textarea name="message" placeholder="Was ist gerade der größte Engpass? (z. B. Pflegedienst, Hilfsmittel, Koordination, Familie)"></textarea>
               </label>
+
               <label>
-                Telefonnummer
-                <input type="tel" name="phone" placeholder="Für Rückfragen oder Terminabstimmung" />
+                Telefonnummer (optional)
+                <input type="tel" name="phone" placeholder="Optional für Rückfragen" />
               </label>
+
               <button type="submit" class="btn" style="margin-top:0.25rem;">Anfrage senden</button>
+
               <div class="form-helper">
-                Mit dem Absenden der Anfrage erklären Sie sich damit einverstanden, dass wir Sie zur Bearbeitung Ihrer Anfrage kontaktieren.
+                Mit dem Absenden erklären Sie sich damit einverstanden, dass wir Sie zur Bearbeitung Ihrer Anfrage kontaktieren.
               </div>
             </form>
           </div>
@@ -921,9 +913,7 @@
 
     <footer>
       <div class="footer-inner">
-        <div>
-          © 2025 CleanCare Hamburg. Alle Rechte vorbehalten.
-        </div>
+        <div>© 2026 Care-Orchestrator. Alle Rechte vorbehalten.</div>
         <div class="footer-links">
           <a href="#">Impressum</a>
           <a href="#">Datenschutz</a>
@@ -933,3 +923,4 @@
   </div>
 </body>
 </html>
+```
