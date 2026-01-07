@@ -4,22 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Datenschutzerklärung – Care Orchestrator</title>
-  <link rel="stylesheet" href="styles.css" /> <!-- Optional: use your existing CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --navy: #1C2E4A;
+      --turquoise: #5BC6C9;
+      --offwhite: #F8F9FA;
+      --text: #111827;
+      --muted: #6b7280;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: "Poppins", sans-serif;
-      background: #f8f9fa;
-      color: #111827;
+      background: var(--offwhite);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 1rem 1.5rem;
+    }
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo-img {
+      height: 30px;
+    }
+    main {
       padding: 3rem 1.5rem;
-      line-height: 1.6;
-      max-width: 860px;
+      max-width: var(--max);
       margin: 0 auto;
     }
     h1, h2, h3 {
-      color: #1C2E4A;
+      color: var(--navy);
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, li {
+      font-size: 1rem;
+      margin-bottom: 1rem;
     }
     a {
-      color: #5BC6C9;
+      color: var(--turquoise);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     .back-link {
       margin-top: 2rem;
@@ -28,12 +64,22 @@
   </style>
 </head>
 <body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <img src="assets/images/carelogo.png" alt="Care Orchestrator" class="logo-img">
+      </div>
+      <div class="nav-right">
+        <a href="index.html" style="color:white; text-decoration:underline;">Zur Startseite</a>
+      </div>
+    </div>
+  </header>
   <main>
     <h1>Datenschutzerklärung</h1>
 
     <h2>1. Allgemeine Hinweise</h2>
     <p>
-      Der Schutz Ihrer persönlichen Daten ist uns wichtig. Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen.
+      Der Schutz Ihrer persönlichen Daten ist uns wichtig. Die folgenden Hinweise geben einen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen.
     </p>
 
     <h2>2. Verantwortliche Stelle</h2>
@@ -49,41 +95,34 @@
 
     <h2>3. Erhebung und Verarbeitung von Daten</h2>
     <p>
-      Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen, z. B. über das Kontaktformular. Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst (z. B. Browser, Betriebssystem, Besuchszeitpunkt).
+      Ihre Daten werden entweder durch Ihre Eingabe (z. B. im Kontaktformular) oder automatisiert beim Besuch der Seite erfasst (z. B. durch Browserinformationen).
     </p>
 
-    <h2>4. Verwendung der Daten</h2>
+    <h2>4. Zweck der Datenverarbeitung</h2>
     <p>
-      Die erhobenen Daten nutzen wir ausschließlich zur Bearbeitung Ihrer Anfrage und zur Kontaktaufnahme. Eine Weitergabe an Dritte erfolgt nur mit Ihrer ausdrücklichen Zustimmung oder wenn gesetzlich erforderlich.
+      Wir verwenden Ihre Daten ausschließlich zur Bearbeitung Ihrer Anfrage und zur Kommunikation mit Ihnen. Eine Weitergabe erfolgt nur mit Einwilligung oder gesetzlicher Grundlage.
     </p>
 
     <h2>5. Hosting</h2>
     <p>
       Unsere Website wird bei GitHub Pages gehostet:<br />
-      GitHub, Inc.<br />
-      88 Colin P Kelly Jr Street<br />
-      San Francisco, CA 94107, USA<br />
-      <a href="https://docs.github.com/en/github/site-policy/github-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>
+      GitHub, Inc., 88 Colin P Kelly Jr Street, San Francisco, CA 94107, USA<br />
+      <a href="https://docs.github.com/en/site-policy/privacy-policies" target="_blank" rel="noopener">Zur Datenschutzerklärung von GitHub</a>
     </p>
 
     <h2>6. Cookies & Analyse</h2>
     <p>
-      Diese Website verwendet keine Cookies oder Analyse-Tools wie Google Analytics.
+      Unsere Website verwendet keine Cookies oder Tracking-Tools.
     </p>
 
     <h2>7. Ihre Rechte</h2>
     <p>
-      Sie haben jederzeit das Recht auf Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten. Sie haben außerdem ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Wenden Sie sich hierzu an: kontakt@care-orchestrator.de
+      Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung Ihrer personenbezogenen Daten. Wenden Sie sich dazu an kontakt@care-orchestrator.de.
     </p>
 
-    <h2>8. SSL- bzw. TLS-Verschlüsselung</h2>
+    <h2>8. Verschlüsselung</h2>
     <p>
-      Unsere Website nutzt aus Sicherheitsgründen eine SSL-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie am „https://“ in der Adresszeile Ihres Browsers.
-    </p>
-
-    <h2>9. Änderung dieser Datenschutzerklärung</h2>
-    <p>
-      Wir behalten uns vor, diese Datenschutzerklärung anzupassen. Gültig ist immer die zum Zeitpunkt Ihres Besuchs veröffentlichte Version.
+      Diese Seite nutzt HTTPS zur sicheren Datenübertragung.
     </p>
 
     <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
