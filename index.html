@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Care-Orchestrator – Akut-Stabilisierung & Koordination nach Entlassung</title>
-  <meta name="description" content="Care-Orchestrator stabilisiert Pflegesituationen in den ersten 14 Tagen nach Krankenhausentlassung. Koordination, Priorisierung, Entlastung für Angehörige – keine Pflegeleistungen.">
+  <title>Care Orchestrator – Ordnung in Pflege, wenn es plötzlich ernst wird</title>
+  <meta name="description" content="Care Orchestrator hilft Angehörigen, Pflege schnell zu organisieren: Klarheit, Koordination, Entlastung. Deutschlandweit.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,35 +13,36 @@
 
   <style>
     :root {
-      /* CI (beibehalten) */
-      --color-deep-navy: #1C2E4A;
-      --color-soft-turquoise: #5BC6C9;
-      --color-warm-coral: #FF8A65;
-      --color-off-white: #F8F9FA;
-      --color-muted-light: #E7ECF2;
+      /* CI – beibehalten */
+      --navy: #1C2E4A;
+      --turquoise: #5BC6C9;
+      --coral: #FF8A65;
+      --offwhite: #F8F9FA;
+      --mutedlight: #E7ECF2;
 
       /* UI */
-      --color-text: #111827;
-      --color-muted: #6b7280;
-      --max-width: 1120px;
-      --radius-card: 18px;
-      --radius-button: 8px;
+      --text: #111827;
+      --muted: #6b7280;
+      --max: 1120px;
+      --radius: 18px;
+      --radius-btn: 10px;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
+      --shadow-hero: 0 24px 60px rgba(0, 0, 0, 0.45);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--color-deep-navy);
-      color: var(--color-text);
+      background: var(--navy);
+      color: var(--text);
       line-height: 1.6;
     }
-
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; height: auto; display: block; }
-
     .page { min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1; }
 
+    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -50,94 +51,109 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-
     .nav {
-      max-width: var(--max-width);
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 0.85rem 1.25rem;
+      padding: 0.9rem 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1rem;
     }
-
-    .logo-wrap {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      color: #ffffff;
+      gap: 0.8rem;
       min-width: 0;
     }
-
-    .logo-img {
-      height: 36px;
-      width: auto;
-      display: block;
-      border-radius: 10px; /* optional – entfernt, falls du keine Abrundung willst */
+    .logo-card {
+      background: rgba(248,249,250,0.92);
+      border: 1px solid rgba(15,23,42,0.12);
+      border-radius: 14px;
+      padding: 6px 10px;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.18);
     }
+    .logo-img { height: 30px; width: auto; }
 
     .nav-right {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      color: #ffffff;
-      font-size: 0.85rem;
       flex-wrap: wrap;
       justify-content: flex-end;
+      color: rgba(255,255,255,0.92);
+      font-size: 0.88rem;
     }
 
-    .btn,
-    .btn-secondary {
-      border-radius: var(--radius-button);
-      padding: 0.55rem 1.4rem;
-      font-weight: 500;
-      font-size: 0.9rem;
+    .btn, .btn-secondary {
+      border-radius: var(--radius-btn);
+      padding: 0.58rem 1.15rem;
+      font-weight: 600;
+      font-size: 0.92rem;
       cursor: pointer;
       border: 2px solid transparent;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
       transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.12s ease-out, border-color 0.12s ease-out, color 0.12s ease-out;
-      text-decoration: none;
       white-space: nowrap;
     }
-
     .btn {
-      background: var(--color-soft-turquoise);
-      color: var(--color-deep-navy);
+      background: var(--turquoise);
+      color: var(--navy);
     }
-
     .btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
     }
-
     .btn-secondary {
       background: transparent;
-      border-color: #ffffff;
-      color: #ffffff;
+      border-color: rgba(255,255,255,0.9);
+      color: #fff;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+    /* Sections */
+    .section { padding: 34px 1.25rem; }
+    @media (min-width: 768px) { .section { padding: 72px 1.25rem; } }
+    .inner { max-width: var(--max); margin: 0 auto; }
+
+    .section-light {
+      background: var(--offwhite);
+      color: var(--text);
     }
 
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.08);
+    .kicker {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(248, 249, 250, 0.72);
+      margin-bottom: 0.8rem;
     }
 
-    main { flex: 1; }
-
-    .section { padding: 32px 1.25rem; }
-    @media (min-width: 768px) {
-      .section { padding: 64px 1.25rem; }
+    .h1 {
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+      font-size: clamp(2.05rem, 3.4vw + 1rem, 3.35rem);
+      line-height: 1.1;
     }
 
-    .section-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
+    .lead {
+      color: rgba(248, 249, 250, 0.86);
+      max-width: 640px;
+      font-size: 1.02rem;
+      margin-bottom: 1.25rem;
     }
 
     /* HERO */
     .hero {
       background: radial-gradient(circle at top left, #293b5c 0, #1C2E4A 45%, #141f35 100%);
-      color: #ffffff;
+      color: #fff;
     }
 
     .hero-grid {
@@ -145,329 +161,255 @@
       gap: 2rem;
       align-items: center;
     }
-
     @media (min-width: 900px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
-      }
+      .hero-grid { grid-template-columns: minmax(0, 620px) minmax(0, 1fr); }
     }
 
-    .hero-eyebrow {
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(248, 249, 250, 0.72);
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-title {
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.75rem;
-      font-size: clamp(2.1rem, 3.5vw + 1rem, 3.5rem);
-    }
-
-    .hero-subtitle {
-      font-size: 0.98rem;
-      max-width: 540px;
-      color: rgba(248, 249, 250, 0.82);
-      margin-bottom: 1.75rem;
-    }
-
-    .hero-cta-row {
+    .hero-cta {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 1.25rem;
+      gap: 12px;
+      margin: 1.1rem 0 0.9rem;
       align-items: center;
     }
 
-    .hero-meta {
-      font-size: 0.85rem;
-      color: rgba(248,249,250,0.8);
+    .trust {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 10px;
+      font-size: 0.86rem;
+      color: rgba(248,249,250,0.78);
+    }
+    .chip {
+      display: inline-flex;
       align-items: center;
+      gap: 8px;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(248,249,250,0.10);
+      border: 1px solid rgba(248,249,250,0.18);
     }
+    .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--turquoise); }
+    .dot.coral { background: var(--coral); }
 
-    .hero-pill {
-      padding: 0.25rem 0.9rem;
-      border-radius: 20px;
-      background: rgba(91, 198, 201, 0.12);
-      border: 1px solid rgba(91, 198, 201, 0.7);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .hero-illustration {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-illustration-inner {
+    .hero-card {
       width: min(480px, 100%);
       aspect-ratio: 4 / 3;
-      background: var(--color-off-white);
-      border-radius: 32px;
-      padding: 1.5rem;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      background: var(--offwhite);
+      border-radius: 28px;
+      box-shadow: var(--shadow-hero);
       position: relative;
       overflow: hidden;
+      padding: 1.3rem;
+      margin-left: auto;
+      margin-right: auto;
     }
-
-    .shape-bg {
+    .hero-card-bg {
       position: absolute;
       inset: 0;
-      opacity: 0.7;
+      opacity: 0.75;
       background:
         radial-gradient(circle at 10% 10%, rgba(91,198,201,0.25), transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(255,138,101,0.25), transparent 52%);
     }
-
-    .shape-main {
+    .hero-card-inner {
       position: absolute;
-      inset: 18%;
-      border-radius: 28px;
+      inset: 16%;
       background: linear-gradient(145deg, #ffffff, #e9edf1);
+      border-radius: 24px;
       box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.25rem;
+      padding: 1.2rem;
     }
-
-    .shape-figure {
+    .mini-ui {
       width: 100%;
       height: 100%;
       position: relative;
     }
-
     .bubble {
       position: absolute;
       border-radius: 999px;
-      background: var(--color-soft-turquoise);
-      box-shadow: 0 12px 30px rgba(5, 150, 160, 0.6);
+      background: var(--turquoise);
+      box-shadow: 0 12px 30px rgba(5, 150, 160, 0.45);
     }
-
-    .bubble.b1 { width: 60px; height: 60px; top: 12%; left: 10%; }
-
-    .bubble.b2 {
-      width: 42px;
-      height: 42px;
-      bottom: 18%;
-      right: 8%;
-      background: var(--color-warm-coral);
-      box-shadow: 0 12px 30px rgba(255, 138, 101, 0.6);
-    }
+    .bubble.b1 { width: 56px; height: 56px; top: 10%; left: 12%; }
+    .bubble.b2 { width: 40px; height: 40px; bottom: 16%; right: 10%; background: var(--coral); box-shadow: 0 12px 30px rgba(255, 138, 101, 0.45); }
 
     .tile {
       position: absolute;
-      border-radius: 18px;
+      border-radius: 16px;
       background: #ffffff;
       box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
     }
-
-    .tile.t1 { width: 52%; height: 34%; top: 16%; right: 8%; }
+    .tile.t1 { width: 54%; height: 34%; top: 16%; right: 10%; }
     .tile.t2 { width: 44%; height: 28%; bottom: 18%; left: 12%; }
 
-    .tile-bar {
+    .bar {
       position: absolute;
-      border-radius: 999px;
       height: 6px;
-      background: var(--color-soft-turquoise);
+      border-radius: 999px;
+      background: var(--turquoise);
     }
+    .bar.b1 { width: 64%; top: 26%; left: 18%; }
+    .bar.b2 { width: 42%; top: 42%; left: 18%; background: var(--coral); }
 
-    .tile-bar.tb1 { width: 64%; top: 24%; left: 18%; }
-    .tile-bar.tb2 { width: 42%; top: 40%; left: 18%; background: var(--color-warm-coral); }
-
-    .hero-illustration-label {
+    .hero-note {
       position: absolute;
+      left: 1.2rem;
+      right: 1.2rem;
       bottom: 1rem;
-      left: 1.5rem;
-      right: 1.5rem;
       font-size: 0.75rem;
       color: #4b5563;
       text-align: center;
     }
 
-    /* Section headings */
-    .section-heading { margin-bottom: 1.5rem; color: #ffffff; }
-    .section-title {
-      font-size: 1.6rem;
-      font-weight: 600;
+    /* Value Props */
+    .headline-dark {
+      font-size: 1.55rem;
+      font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.55rem;
+      color: var(--text);
     }
-    .section-subtitle {
+    .sub-dark {
+      color: var(--muted);
+      max-width: 740px;
       font-size: 0.95rem;
-      color: rgba(248, 249, 250, 0.72);
-      max-width: 820px;
+      margin-bottom: 1.6rem;
     }
 
-    /* Light sections */
-    .section-light { background: var(--color-off-white); color: var(--color-text); }
-    .section-light .section-heading { color: var(--color-text); }
-    .section-light .section-subtitle { color: var(--color-muted); }
-
-    /* Cards */
-    .service-grid { display: grid; gap: 1.25rem; }
-    @media (min-width: 900px) {
-      .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid {
+      display: grid;
+      gap: 1.05rem;
     }
+    @media (min-width: 900px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
     .card {
-      background: #ffffff;
-      border-radius: var(--radius-card);
-      padding: 1.4rem;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.15rem;
       border: 1px solid rgba(15, 23, 42, 0.06);
+      box-shadow: var(--shadow);
     }
-
-    .badge {
+    .icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      padding: 0.2rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(91, 198, 201, 0.1);
-      color: #0f172a;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
+      justify-content: center;
+      background: rgba(91,198,201,0.14);
+      color: var(--navy);
+      font-weight: 800;
+      margin-bottom: 0.7rem;
     }
+    .icon.coral { background: rgba(255,138,101,0.16); }
+    .card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .card p { font-size: 0.92rem; color: var(--muted); }
 
-    .badge-accent { background: rgba(255, 138, 101, 0.14); }
-
-    .card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
+    /* How it works */
+    .steps {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.25rem;
     }
+    @media (min-width: 900px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
-    .card ul {
+    .step {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.05rem;
+      color: rgba(248,249,250,0.92);
+    }
+    .step .nr {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      background: rgba(91,198,201,0.16);
+      border: 1px solid rgba(91,198,201,0.35);
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+    }
+    .step h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .step p { color: rgba(248,249,250,0.78); font-size: 0.92rem; }
+
+    /* Minimal FAQ */
+    details {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 1.05rem 1.1rem;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      box-shadow: var(--shadow);
+    }
+    details + details { margin-top: 0.75rem; }
+    summary {
+      cursor: pointer;
+      font-weight: 800;
       list-style: none;
-      font-size: 0.9rem;
-      color: var(--color-muted);
-      margin-top: 0.4rem;
-    }
-
-    .card ul li + li { margin-top: 0.25rem; }
-
-    /* Why/Process */
-    .why-grid { display: grid; gap: 1.75rem; }
-    @media (min-width: 900px) {
-      .why-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr); }
-    }
-
-    .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
-
-    .pill {
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(248, 249, 250, 0.18);
-      border: 1px solid rgba(248, 249, 250, 0.4);
-      font-size: 0.78rem;
-      color: #e5e7eb;
-    }
-
-    .card-why {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: var(--radius-card);
-      padding: 1.4rem;
-      border: 1px solid rgba(248, 249, 250, 0.08);
-      color: rgba(248, 249, 250, 0.9);
-      font-size: 0.9rem;
-    }
-
-    /* Pricing */
-    .pricing-note {
-      font-size: 0.85rem;
-      color: var(--color-muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .pricing-grid { display: grid; gap: 1rem; }
-    @media (min-width: 768px) {
-      .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    .price-row {
       display: flex;
       justify-content: space-between;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      margin-bottom: 0.35rem;
+      gap: 1rem;
+      align-items: center;
     }
-
-    .price-label { color: var(--color-muted); }
-    .price-value { font-weight: 600; color: var(--color-deep-navy); }
-
-    /* Differentiation table */
-    .table-wrap { overflow-x: auto; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #ffffff;
-      border-radius: var(--radius-card);
-      overflow: hidden;
-      border: 1px solid rgba(15, 23, 42, 0.06);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-    }
-    th, td {
-      padding: 0.85rem 0.8rem;
-      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-      vertical-align: top;
-      text-align: left;
-      font-size: 0.9rem;
-    }
-    th {
-      background: rgba(91, 198, 201, 0.12);
-      color: #0f172a;
-      font-weight: 600;
-    }
-    tr:last-child td { border-bottom: 0; }
+    summary::-webkit-details-marker { display: none; }
+    .faq-body { margin-top: 0.6rem; color: var(--muted); font-size: 0.92rem; }
 
     /* Contact */
-    .contact-grid { display: grid; gap: 1.5rem; }
-    @media (min-width: 900px) {
-      .contact-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr); }
+    .contact-grid { display: grid; gap: 1.25rem; }
+    @media (min-width: 900px) { .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); } }
+
+    .contact-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.05rem;
+      color: rgba(248,249,250,0.90);
+    }
+    .contact-box p { color: rgba(248,249,250,0.78); font-size: 0.92rem; margin-top: 0.35rem; }
+    .small {
+      font-size: 0.82rem;
+      color: rgba(248,249,250,0.74);
+      margin-top: 0.85rem;
     }
 
     form { display: grid; gap: 0.75rem; }
-
     label {
       display: flex;
       flex-direction: column;
       font-size: 0.82rem;
-      color: var(--color-muted);
+      color: rgba(248,249,250,0.85);
       gap: 0.3rem;
     }
-
     input, select, textarea {
       border-radius: 10px;
-      border: 1px solid #d1d5db;
-      padding: 0.55rem 0.7rem;
-      font-size: 0.9rem;
+      border: 1px solid rgba(231,236,242,0.45);
+      padding: 0.6rem 0.75rem;
+      font-size: 0.92rem;
       font-family: inherit;
       outline: none;
-      background: #ffffff;
+      background: rgba(255,255,255,0.96);
       transition: border-color 0.12s ease-out, box-shadow 0.12s ease-out;
+      color: var(--text);
     }
-
     input:focus, select:focus, textarea:focus {
-      border-color: var(--color-soft-turquoise);
-      box-shadow: 0 0 0 1px rgba(91, 198, 201, 0.5);
+      border-color: var(--turquoise);
+      box-shadow: 0 0 0 2px rgba(91, 198, 201, 0.35);
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    .helper {
+      font-size: 0.78rem;
+      color: rgba(248,249,250,0.74);
+      margin-top: 0.15rem;
     }
 
-    textarea { min-height: 110px; resize: vertical; }
-    .form-helper { font-size: 0.75rem; color: var(--color-muted); }
-
+    /* Footer */
     footer {
       border-top: 1px solid rgba(248, 249, 250, 0.1);
       padding: 1.5rem 1.25rem;
@@ -475,27 +417,24 @@
       color: rgba(248, 249, 250, 0.7);
       font-size: 0.8rem;
     }
-
     .footer-inner {
-      max-width: var(--max-width);
+      max-width: var(--max);
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
-
     @media (min-width: 640px) {
       .footer-inner { flex-direction: row; justify-content: space-between; align-items: center; }
     }
-
     .footer-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
     .footer-links a {
       text-decoration: underline;
       text-decoration-color: rgba(248, 249, 250, 0.25);
     }
-    .footer-links a:hover { text-decoration-color: var(--color-soft-turquoise); }
+    .footer-links a:hover { text-decoration-color: var(--turquoise); }
 
-    /* Anchor offset for sticky header */
+    /* Anchors */
     .anchor { scroll-margin-top: 90px; }
   </style>
 </head>
@@ -504,365 +443,178 @@
   <div class="page">
     <header>
       <div class="nav">
-        <div class="logo-wrap">
-          <img
-            src="assets/images/care123.png"
-            alt="Care-Orchestrator – Akut-Stabilisierung & Koordination nach Entlassung"
-            class="logo-img"
-          />
+        <div class="brand">
+          <span class="logo-card">
+            <!-- Logo-Datei umbenannt: carelogo.png -->
+            <img src="assets/images/carelogo.png" alt="Care Orchestrator" class="logo-img">
+          </span>
         </div>
+
         <div class="nav-right">
-          <span>Deutschlandweit · Remote</span>
-          <a href="#kontakt" class="btn-secondary">Erstgespräch</a>
+          <span style="color: rgba(255,255,255,0.75);">Deutschlandweit · Remote</span>
+          <a class="btn-secondary" href="#faq">FAQ</a>
+          <a class="btn" href="#kontakt">Erstgespräch</a>
         </div>
       </div>
     </header>
 
     <main>
-      <!-- HERO -->
+      <!-- HERO (kurz, klar, nicht überladen) -->
       <section class="section hero">
-        <div class="section-inner hero-grid">
+        <div class="inner hero-grid">
           <div>
-            <div class="hero-eyebrow">Pflege als Projektmanagement · 14 Tage Stabilisierung</div>
-            <h1 class="hero-title">Wir stabilisieren Pflegesituationen in den ersten 14 Tagen.</h1>
-            <p class="hero-subtitle">
-              Wenn Pflege plötzlich beginnt, entsteht Chaos: Entlassung, Anbieter, Hilfsmittel, Anträge, Familie.
-              Wir bringen Struktur, priorisieren die nächsten Schritte und koordinieren die Umsetzung –
-              damit nach dem Krankenhaus der Alltag wieder funktioniert.
+            <div class="kicker">Organisation · Koordination · Entlastung</div>
+            <h1 class="h1">Wenn Pflege plötzlich beginnt, schaffen wir Ordnung.</h1>
+            <p class="lead">
+              Care Orchestrator hilft Angehörigen, Versorgung schnell aufzusetzen – klar, strukturiert und ohne Überforderung.
             </p>
-            <div class="hero-cta-row">
-              <a href="#kontakt" class="btn">Erstgespräch anfragen</a>
-              <a href="#so-funktionierts" class="btn-secondary">So funktioniert’s</a>
+
+            <div class="hero-cta">
+              <a class="btn" href="#kontakt">Erstgespräch anfragen</a>
+              <a class="btn-secondary" href="#wie-es-laeuft">So läuft’s ab</a>
             </div>
-            <div class="hero-meta">
-              <span class="hero-pill">Klar begrenzt: 14 Tage</span>
-              <span>Diskret · Dokumentiert · Keine Pflegeleistungen</span>
+
+            <div class="trust">
+              <span class="chip"><span class="dot"></span> Klarer Scope</span>
+              <span class="chip"><span class="dot coral"></span> Diskret & dokumentiert</span>
+              <span class="chip"><span class="dot"></span> Keine Pflegeleistungen</span>
             </div>
           </div>
 
-          <div class="hero-illustration">
-            <div class="hero-illustration-inner">
-              <div class="shape-bg"></div>
-              <div class="shape-main">
-                <div class="shape-figure">
+          <div>
+            <div class="hero-card" aria-hidden="true">
+              <div class="hero-card-bg"></div>
+              <div class="hero-card-inner">
+                <div class="mini-ui">
                   <div class="bubble b1"></div>
                   <div class="bubble b2"></div>
                   <div class="tile t1">
-                    <div class="tile-bar tb1"></div>
-                    <div class="tile-bar tb2"></div>
+                    <div class="bar b1"></div>
+                    <div class="bar b2"></div>
                   </div>
                   <div class="tile t2"></div>
                 </div>
               </div>
-              <div class="hero-illustration-label">
-                Abstrakte Visualisierung: Chaos → Struktur → Stabilität (in 14 Tagen).
-              </div>
+              <div class="hero-note">Chaos → Struktur → stabile Versorgung</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- LEISTUNGEN -->
-      <section class="section section-light anchor" id="leistungen">
-        <div class="section-inner">
-          <div class="section-heading">
-            <h2 class="section-title">Unser Akut-Paket (14 Tage)</h2>
-            <p class="section-subtitle">
-              Ein klar begrenzter Service für Angehörige nach Krankenhausentlassung – mit konkreten Deliverables statt endloser Beratung.
-              Wir sind kein Pflegedienst und erbringen keine Pflegeleistungen.
-            </p>
-          </div>
-
-          <div class="service-grid">
-            <article class="card">
-              <div class="badge">Einordnung</div>
-              <h3>Situation verstehen & priorisieren</h3>
-              <ul>
-                <li>Kurzer Intake (Telefon/Video) + Fakten sammeln</li>
-                <li>Engpässe, Risiken und Abhängigkeiten erkennen</li>
-                <li>14-Tage-Plan als Prioritätenliste (handlungsfähig)</li>
-                <li>Rollen in der Familie klären (wer entscheidet?)</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <div class="badge">Koordination</div>
-              <h3>Umsetzung organisieren (Kernwert)</h3>
-              <ul>
-                <li>3–5 Anbieter anfragen, Starttermine vergleichen</li>
-                <li>Konsequent nachhaken & Zusagen bestätigen</li>
-                <li>Plan B/C: Übergangslösungen vorbereiten</li>
-                <li>Hilfsmittel koordinieren (Verordnung → Sanitätshaus)</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <div class="badge badge-accent">Entlastung</div>
-              <h3>Überblick schaffen & Verantwortung senken</h3>
-              <ul>
-                <li>Telefonate & Koordination übernehmen (nach Mandat)</li>
-                <li>Informationen filtern, Entscheidungen vorbereiten</li>
-                <li>Dokumentation: Status, nächste Schritte, Ansprechpartner</li>
-                <li>Übergabe + Exit: stabile Versorgung, klare Zuständigkeiten</li>
-              </ul>
-            </article>
-          </div>
-
-          <div style="margin-top:1rem; font-size:0.85rem; color:var(--color-muted);">
-            <strong>Abgrenzung:</strong> Keine medizinische oder rechtliche Beratung. Keine Pflegeleistungen. Keine Garantie auf Verfügbarkeiten Dritter.
-            Wir koordinieren, strukturieren und halten nach – im Auftrag der Angehörigen.
-          </div>
-        </div>
-      </section>
-
-      <!-- WARUM WIR / PROZESS -->
-      <section class="section anchor" id="so-funktionierts">
-        <div class="section-inner why-grid">
-          <div>
-            <div class="section-heading">
-              <h2 class="section-title">So arbeiten wir</h2>
-              <p class="section-subtitle">
-                Entlassmanagement organisiert die Entlassung. Wir stabilisieren die erste Zeit danach – mit Ownership, Nachhalten und einem klaren Exit.
-              </p>
-            </div>
-
-            <p style="font-size:0.92rem; color:rgba(248,249,250,0.8); margin-bottom:0.75rem;">
-              Wir sind eine <strong>Intervention</strong>, keine Dauerbegleitung: kurzer Einstieg, klare Struktur,
-              konsequentes Nachhalten – und dann Übergabe an Familie und Leistungserbringer.
-              Das maximiert Entlastung, reduziert Chaos und schafft wieder Handlungsfähigkeit.
-            </p>
-
-            <div class="pill-row">
-              <span class="pill">Klar begrenzt (14 Tage)</span>
-              <span class="pill">Ownership & Nachhalten</span>
-              <span class="pill">Plan B/C vorbereitet</span>
-              <span class="pill">Dokumentiert & transparent</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="card-why">
-              <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.5rem;">14-Tage-Ablauf (Übersicht)</h3>
-              <ul style="list-style:none; padding-left:0; margin-top:0.4rem;">
-                <li>• <strong>Tag 0–1:</strong> Erstkontakt, Qualifizierung, Mandat & Datenschutz</li>
-                <li>• <strong>Tag 1–3:</strong> Analyse, Priorisierung, Maßnahmenplan</li>
-                <li>• <strong>Tag 3–10:</strong> Koordination & Durchziehen (Anbieter, Hilfsmittel, Übergangslösungen)</li>
-                <li>• <strong>Tag 10–14:</strong> Stabilitätscheck, Übergabe, Exit</li>
-              </ul>
-              <p style="margin-top:0.85rem;">
-                Ziel ist nicht „perfekt“, sondern <strong>stabil genug</strong>, damit die Versorgung zuverlässig läuft.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABGRENZUNG (TABELLE) -->
-      <section class="section section-light anchor" id="abgrenzung">
-        <div class="section-inner">
-          <div class="section-heading">
-            <h2 class="section-title">Abgrenzung im System</h2>
-            <p class="section-subtitle">
-              Wir ersetzen keine Akteure – wir schließen die operative Lücke nach der Entlassung.
-            </p>
-          </div>
-
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Option</th>
-                  <th>Auftraggeber</th>
-                  <th>Zeitfenster</th>
-                  <th>Ownership</th>
-                  <th>Umsetzungstiefe</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Entlassmanagement</strong></td>
-                  <td>Klinik / System</td>
-                  <td>bis Entlassung</td>
-                  <td>formal</td>
-                  <td>Planung/Übergabe</td>
-                </tr>
-                <tr>
-                  <td><strong>Pflegedienst</strong></td>
-                  <td>Pflegebedürftige / Kasse</td>
-                  <td>laufend</td>
-                  <td>für Pflegeleistungen</td>
-                  <td>Ausführung (Pflege)</td>
-                </tr>
-                <tr>
-                  <td><strong>Pflegeberatung (§7a)</strong></td>
-                  <td>Kasse</td>
-                  <td>punktuell</td>
-                  <td>beratend</td>
-                  <td>Information/Orientierung</td>
-                </tr>
-                <tr>
-                  <td><strong>24h Vermittlung</strong></td>
-                  <td>Privat</td>
-                  <td>Vollzeitlösung</td>
-                  <td>Betreuung fokussiert</td>
-                  <td>eine Lösung (nicht immer passend)</td>
-                </tr>
-                <tr>
-                  <td><strong>Care-Orchestrator</strong></td>
-                  <td><strong>Angehörige</strong></td>
-                  <td><strong>14 Tage nach Ereignis</strong></td>
-                  <td><strong>faktisch (Nachhalten)</strong></td>
-                  <td><strong>Koordination + Plan B/C + Übergabe</strong></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div style="margin-top:1rem; font-size:0.85rem; color:var(--color-muted);">
-            <strong>Hinweis:</strong> Wir können keine Verfügbarkeit Dritter garantieren. Entscheidungen bleiben bei Ihnen.
-            Wir sorgen für Struktur, Optionen und konsequentes Nachhalten.
-          </div>
-        </div>
-      </section>
-
-      <!-- PREISE -->
-      <section class="section section-light anchor" id="preise">
-        <div class="section-inner">
-          <div class="section-heading">
-            <h2 class="section-title">Preise & Orientierung</h2>
-            <p class="section-subtitle">
-              Transparent und klar begrenzt. Nach einem kurzen Erstgespräch nennen wir Ihnen eine klare Spanne.
-            </p>
-          </div>
-
-          <p class="pricing-note">
-            Richtwerte. Abhängig von Komplexität, Region und Verfügbarkeit von Leistungserbringern. Wir rechnen nicht über Pflegekassen ab.
+      <!-- VALUE (nur 3 Kacheln, kein Overload) -->
+      <section class="section section-light anchor" id="wie-es-laeuft">
+        <div class="inner">
+          <h2 class="headline-dark">Was wir für euch lösen</h2>
+          <p class="sub-dark">
+            Nicht „noch mehr Informationen“, sondern Klarheit und Umsetzung – damit ihr wieder Luft bekommt.
           </p>
 
-          <div class="pricing-grid">
-            <div class="card">
-              <h3>Akut-Paket (14 Tage)</h3>
-              <div style="margin-top:0.6rem;">
-                <div class="price-row">
-                  <span class="price-label">Leistung</span>
-                  <span class="price-value">Stabilisierung & Koordination</span>
-                </div>
-                <div class="price-row">
-                  <span class="price-label">Preisrahmen</span>
-                  <span class="price-value">600–1.200 €</span>
-                </div>
-                <div class="price-row">
-                  <span class="price-label">Enthalten</span>
-                  <span class="price-value">Plan · Nachhalten · Übergabe</span>
-                </div>
-              </div>
-              <div style="margin-top:0.8rem; font-size:0.85rem; color:var(--color-muted);">
-                Ideal, wenn Entlassung bevorsteht oder die Versorgung nach Entlassung bricht.
-              </div>
-            </div>
-
-            <div class="card">
-              <h3>Optional: Re-Entry / Sparring</h3>
-              <div style="margin-top:0.6rem;">
-                <div class="price-row">
-                  <span class="price-label">Kurz-Check / Telefonat</span>
-                  <span class="price-value">auf Anfrage</span>
-                </div>
-                <div class="price-row">
-                  <span class="price-label">Monatliche Begleitung</span>
-                  <span class="price-value">79–129 €/Monat</span>
-                </div>
-                <div class="price-row">
-                  <span class="price-label">Ziel</span>
-                  <span class="price-value">Rückfall-Chaos vermeiden</span>
-                </div>
-              </div>
-              <div style="margin-top:0.8rem; font-size:0.85rem; color:var(--color-muted);">
-                Sinnvoll, wenn es wiederholt zu Ausfällen / Eskalationen kommt.
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top:1rem; font-size:0.85rem; color:var(--color-muted);">
-            <strong>Praxis:</strong> Übergangslösungen (z. B. Betreuung über §45b) koordinieren wir – sofern Pflegegrad vorhanden und Anbieter anerkannt sind.
+          <div class="grid">
+            <article class="card">
+              <div class="icon">1</div>
+              <h3>Klarheit</h3>
+              <p>Wir sortieren die Lage und legen die nächsten Schritte fest – verständlich und priorisiert.</p>
+            </article>
+            <article class="card">
+              <div class="icon">2</div>
+              <h3>Koordination</h3>
+              <p>Wir koordinieren Termine und Anbieter im Auftrag der Familie (mit Einwilligung) und halten nach.</p>
+            </article>
+            <article class="card">
+              <div class="icon coral">3</div>
+              <h3>Entlastung</h3>
+              <p>Ihr müsst nicht Projektleitung im Ausnahmezustand sein. Wir übernehmen Struktur und Druck.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- FAQ -->
-      <section class="section anchor" id="faq">
-        <div class="section-inner">
-          <div class="section-heading">
-            <h2 class="section-title">FAQ</h2>
-            <p class="section-subtitle">Kurz und klar – die häufigsten Fragen.</p>
-          </div>
+      <!-- HOW IT WORKS (nur 3 Schritte) -->
+      <section class="section hero anchor" id="ablauf">
+        <div class="inner">
+          <div class="kicker">So läuft’s ab</div>
+          <h2 class="h1" style="font-size: clamp(1.75rem, 2.2vw + 1rem, 2.5rem); margin-bottom: 0.65rem;">
+            Drei Schritte – und es wird wieder beherrschbar.
+          </h2>
+          <p class="lead" style="margin-bottom: 1.1rem;">
+            Ein kurzer Prozess, der schnell Klarheit bringt und euch spürbar entlastet.
+          </p>
 
-          <div class="service-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
-            <article class="card">
-              <div class="badge">Frage</div>
-              <h3>Macht das nicht das Krankenhaus?</h3>
-              <ul>
-                <li>Entlassmanagement organisiert die Entlassung.</li>
-                <li>Wir stabilisieren die Zeit danach – inkl. Nachhalten & Plan B/C.</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <div class="badge">Frage</div>
-              <h3>Sind Sie ein Pflegedienst?</h3>
-              <ul>
-                <li>Nein. Wir erbringen keine Pflegeleistungen.</li>
-                <li>Wir koordinieren und strukturieren Entscheidungen.</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <div class="badge">Frage</div>
-              <h3>Können Sie Pflegegrad garantieren?</h3>
-              <ul>
-                <li>Nein. Keine Rechtsberatung, keine Ergebnisgarantien.</li>
-                <li>Wir helfen bei Struktur, Unterlagen, Prozessklarheit.</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <div class="badge">Frage</div>
-              <h3>Was passiert nach 14 Tagen?</h3>
-              <ul>
-                <li>Übergabe an Familie & Leistungserbringer mit Status & Plan.</li>
-                <li>Optional: Re-Entry bei erneuter Eskalation.</li>
-              </ul>
-            </article>
-          </div>
-
-          <div style="margin-top:1rem; font-size:0.85rem; color:rgba(248,249,250,0.8);">
-            <strong>Hinweis:</strong> Kein Notfallservice / keine 24/7-Erreichbarkeit. Bei medizinischen Notfällen bitte 112.
+          <div class="steps">
+            <div class="step">
+              <div class="nr">1</div>
+              <h3>Erstgespräch</h3>
+              <p>Wir verstehen die Situation in 20 Minuten und sagen ehrlich, ob wir helfen können.</p>
+            </div>
+            <div class="step">
+              <div class="nr">2</div>
+              <h3>Plan</h3>
+              <p>Ihr bekommt eine klare Reihenfolge: Was jetzt wichtig ist – und was warten kann.</p>
+            </div>
+            <div class="step">
+              <div class="nr">3</div>
+              <h3>Umsetzung</h3>
+              <p>Wir koordinieren und halten nach, bis das Setup stabil läuft (im Auftrag der Familie).</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- KONTAKT -->
-      <section class="section anchor" id="kontakt">
-        <div class="section-inner contact-grid">
-          <div>
-            <div class="section-heading">
-              <h2 class="section-title">Erstgespräch anfragen</h2>
-              <p class="section-subtitle">
-                Beschreiben Sie kurz Ihre Situation. Wir melden uns werktags zeitnah mit dem nächsten Schritt.
-              </p>
-            </div>
+      <!-- FAQ (minimal) -->
+      <section class="section section-light anchor" id="faq">
+        <div class="inner">
+          <h2 class="headline-dark">FAQ</h2>
+          <p class="sub-dark">Kurz beantwortet – ohne Fachchinesisch.</p>
 
-            <div style="font-size:0.9rem; color:rgba(248,249,250,0.8); margin-bottom:1rem;">
-              <p><strong>Kontakt:</strong> E-Mail oder Formular</p>
-              <p><strong>Datenschutz:</strong> Bitte keine sensiblen Gesundheitsdetails per Freitext. Rahmendaten reichen für den Start.</p>
+          <details>
+            <summary>Seid ihr ein Pflegedienst?</summary>
+            <div class="faq-body">
+              Nein. Wir erbringen keine Pflegeleistungen. Wir helfen Angehörigen, Versorgung zu organisieren und zu koordinieren.
             </div>
+          </details>
 
-            <p class="form-helper" style="color:rgba(248,249,250,0.8);">
-              Wir arbeiten ausschließlich im Auftrag der Angehörigen und mit Einwilligung. Wir dokumentieren transparent.
+          <details>
+            <summary>Für welche Situationen ist das gedacht?</summary>
+            <div class="faq-body">
+              Wenn Pflege plötzlich startet (z. B. nach einem Krankenhausaufenthalt) und die Familie schnell Ordnung und einen Plan braucht.
+            </div>
+          </details>
+
+          <details>
+            <summary>Wie läuft die Zusammenarbeit ab?</summary>
+            <div class="faq-body">
+              Erstgespräch → Plan → Koordination/Umsetzung. Immer mit klaren Grenzen, transparent und dokumentiert.
+            </div>
+          </details>
+
+          <details>
+            <summary>Was braucht ihr von uns?</summary>
+            <div class="faq-body">
+              Nur Rahmendaten (Region, Situation, größter Engpass) und – wenn wir koordinieren sollen – eine Einwilligung/Mandat.
+              Bitte keine sensiblen Gesundheitsdetails im Freitext.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- CONTACT (klar, leicht, kein Mail-Overload im Text) -->
+      <section class="section hero anchor" id="kontakt">
+        <div class="inner contact-grid">
+          <div class="contact-box">
+            <div class="kicker" style="margin-bottom:0.6rem;">Erstgespräch</div>
+            <h2 style="color:#fff; font-weight:700; letter-spacing:-0.02em; font-size:1.55rem; line-height:1.2;">
+              Sag uns kurz, was los ist.
+            </h2>
+            <p>
+              Wir melden uns werktags zeitnah. Wenn es nicht passt, sagen wir es offen – und geben euch eine sinnvolle nächste Orientierung.
             </p>
+            <div class="small">
+              Hinweis: Kein Notfallservice. Bei akuten medizinischen Notfällen bitte 112.
+            </div>
           </div>
 
           <div>
+            <!-- MVP: mailto. Später kann das durch Tally/Typeform ersetzt werden -->
             <form action="mailto:kontakt@care-orchestrator.de" method="post" enctype="text/plain">
               <label>
                 Name
@@ -875,7 +627,7 @@
               </label>
 
               <label>
-                PLZ
+                Region (PLZ)
                 <input type="text" name="plz" placeholder="z. B. 20095" required />
               </label>
 
@@ -883,27 +635,21 @@
                 Situation
                 <select name="situation" required>
                   <option value="">Bitte wählen…</option>
-                  <option value="entlassung-steht-an">Entlassung steht bevor (24–72h)</option>
-                  <option value="bereits-entlassen">Bereits entlassen – Versorgung unsicher</option>
-                  <option value="versorgung-bricht-weg">Versorgung bricht weg / Ausfall</option>
+                  <option value="entlassung">Entlassung steht bevor</option>
+                  <option value="nach-entlassung">Nach Entlassung – Versorgung unsicher</option>
+                  <option value="akut">Akut: es kippt gerade</option>
                   <option value="sonstiges">Sonstiges</option>
                 </select>
               </label>
 
               <label>
-                Größter Engpass (kurz)
-                <textarea name="message" placeholder="Was ist gerade der größte Engpass? (z. B. Pflegedienst, Hilfsmittel, Koordination, Familie)"></textarea>
+                Kurzbeschreibung (ohne sensible Gesundheitsdetails)
+                <textarea name="message" placeholder="Was ist der größte Engpass? (z. B. Organisation, Koordination, Überblick)"></textarea>
               </label>
 
-              <label>
-                Telefonnummer (optional)
-                <input type="tel" name="phone" placeholder="Optional für Rückfragen" />
-              </label>
-
-              <button type="submit" class="btn" style="margin-top:0.25rem;">Anfrage senden</button>
-
-              <div class="form-helper">
-                Mit dem Absenden erklären Sie sich damit einverstanden, dass wir Sie zur Bearbeitung Ihrer Anfrage kontaktieren.
+              <button type="submit" class="btn">Anfrage senden</button>
+              <div class="helper">
+                Mit dem Absenden erklärst du dich einverstanden, dass wir dich zur Bearbeitung der Anfrage kontaktieren.
               </div>
             </form>
           </div>
@@ -913,7 +659,7 @@
 
     <footer>
       <div class="footer-inner">
-        <div>© 2026 Care-Orchestrator. Alle Rechte vorbehalten.</div>
+        <div>© 2026 Care Orchestrator. Alle Rechte vorbehalten.</div>
         <div class="footer-links">
           <a href="#">Impressum</a>
           <a href="#">Datenschutz</a>
