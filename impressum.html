@@ -4,13 +4,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Impressum – Care Orchestrator</title>
-  <link rel="stylesheet" href="styles.css" /> <!-- optional: reuse your CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1C2E4A;
+      --turquoise: #5BC6C9;
+      --offwhite: #F8F9FA;
+      --text: #111827;
+      --muted: #6b7280;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--offwhite);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 1rem 1.5rem;
+    }
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo-img {
+      height: 30px;
+    }
+    main {
+      padding: 3rem 1.5rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    h1, h2, h3 {
+      color: var(--navy);
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, li {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    a {
+      color: var(--turquoise);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .back-link {
+      margin-top: 2rem;
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
-  <main style="max-width: 800px; margin: 4rem auto; font-family: sans-serif; line-height: 1.6;">
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <img src="assets/images/carelogo.png" alt="Care Orchestrator" class="logo-img">
+      </div>
+      <div class="nav-right">
+        <a href="index.html" style="color:white; text-decoration:underline;">Zur Startseite</a>
+      </div>
+    </div>
+  </header>
+  <main>
     <h1>Impressum</h1>
 
-    <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+    <h2>Angaben gemäß § 5 TMG</h2>
     <p>
       Care Orchestrator<br />
       Max Mustermann<br />
@@ -19,26 +86,40 @@
       Deutschland
     </p>
 
-    <p><strong>Kontakt:</strong><br />
+    <h2>Vertreten durch:</h2>
+    <p>Max Mustermann</p>
+
+    <h2>Kontakt</h2>
+    <p>
       Telefon: +49 (0) 123 456789<br />
       E-Mail: kontakt@care-orchestrator.de
     </p>
 
-    <p><strong>Umsatzsteuer-ID:</strong><br />
-      DE123456789
-    </p>
-
-    <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br />
+    <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+    <p>
       Max Mustermann<br />
       Musterstraße 12<br />
       12345 Musterstadt
     </p>
 
-    <p><strong>Haftung für Inhalte:</strong><br />
-      Trotz sorgfältiger Kontrolle übernehmen wir keine Haftung für externe Links.
+    <h2>Haftung für Inhalte</h2>
+    <p>
+      Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+      Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.
     </p>
 
-    <p><a href="index.html">Zurück zur Startseite</a></p>
+    <h2>Haftung für Links</h2>
+    <p>
+      Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte übernehmen wir keine Gewähr.
+    </p>
+
+    <h2>Urheberrecht</h2>
+    <p>
+      Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
+      Beiträge Dritter sind als solche gekennzeichnet.
+    </p>
+
+    <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
   </main>
 </body>
 </html>
